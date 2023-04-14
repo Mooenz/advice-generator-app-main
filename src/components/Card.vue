@@ -97,7 +97,7 @@ img {
   border-radius: 50%;
   cursor: pointer;
   border: none;
-  background-image: url('icon-dice.svg');
+  background-image: url('@/assets/icon-dice.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 20px;
