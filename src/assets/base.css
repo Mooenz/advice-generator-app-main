@@ -7,10 +7,11 @@
   --grayishBlue: hsl(217, 19%, 38%);
   --darkGrayishBlue: hsl(217, 19%, 24%);
   --darkBlue: hsl(218, 23%, 16%);
+  --white: hsl(0, 0%, 100%);
 
   /* Typography */
   --fontQuote: 1.75rem;
-  --fontFamily: ;
+  --fontFamily: 'Manrope', sans-serif;
   --fontWeightBold: 700;
   --fontWeightBlack: 800;
 }
@@ -28,10 +29,11 @@
 body {
   min-height: 100vh;
   font-size: 62.5%;
+  font-family: var(--fontFamily);
   text-rendering: optimizeLegibility;
   color: var(--color-text);
   background: var(--darkBlue);
-  transition: color 0.5s, background-color 0.5s;
   display: grid;
   place-content: center;
+  padding: 0 12px;
 }
