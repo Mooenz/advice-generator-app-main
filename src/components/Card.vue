@@ -32,10 +32,10 @@ export default {
       <h1>"{{ advice }}"</h1>
       <picture>
         <source
-          srcset="pattern-divider-desktop.svg"
+          srcset="@/assets/pattern-divider-desktop.svg"
           media="(min-width:992px)"
         />
-        <img src="pattern-divider-mobile.svg" alt="Separator mobile" />
+        <img src="@/assets/pattern-divider-mobile.svg" alt="Separator mobile" />
       </picture>
     </section>
 
