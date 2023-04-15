@@ -12,7 +12,7 @@ export default {
     async getAdvice() {
       const response = await axios.get('https://api.adviceslip.com/advice');
       const data = response.data;
-  
+
       this.advice = data.slip.advice;
       this.id = data.slip.id;
     },
