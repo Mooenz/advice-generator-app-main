@@ -6,9 +6,19 @@ export default {
     return {
       advice: '',
       id: '',
+      buttonRotated: false,
     };
   },
   methods: {
+    rotateButton() {
+      this.buttonRotated = true; // establece una propiedad en el componente para indicar que el botón está girando
+
+      setTimeout(() => {
+        this.buttonRotated = false; // desactiva la propiedad después de que se haya completado la animación
+
+        this.getAdvice();
+      }, 1000);
+    },
     async getAdvice() {
       const response = await axios.get('https://api.adviceslip.com/advice');
       const data = response.data;
@@ -39,7 +49,11 @@ export default {
       </picture>
     </section>
 
-    <button @click="getAdvice" class="card__btn"></button>
+    <button
+      @click="rotateButton"
+      class="card__btn"
+      :class="{ rotate: buttonRotated }"
+    ></button>
   </article>
 </template>
 
@@ -48,8 +62,8 @@ export default {
   position: relative;
   width: 100%;
   max-width: 350px;
-  /* min-height: 180px; */
-  padding: 32px 0 50px;
+  min-height: 240px;
+  padding: 40px 0 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,6 +73,7 @@ export default {
 }
 
 .card__header {
+  position: initial;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -66,15 +81,20 @@ export default {
 }
 
 .card__header header {
+  position: absolute;
+  top: 40px;
+  left: 50%;
   font-size: 0.625rem;
   font-weight: var(--fontWeightBold);
   color: var(--neonGreen);
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-bottom: 6px;
+  transform: translateX(-50%);
 }
 
 .card__header h1 {
+  margin: 40px 0 20px;
   font-size: 1.25rem;
   font-weight: var(--fontWeightBold);
   color: var(--white);
@@ -82,7 +102,16 @@ export default {
   word-spacing: 2px;
 }
 
-img {
+.card__header picture {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  bottom: 40px;
+  padding: 0 24px;
+  transform: translateX(-50%);
+}
+
+.card__header img {
   width: 100%;
   object-fit: cover;
 }
@@ -107,5 +136,18 @@ img {
 .card__btn:hover {
   background-color: hsl(150, 100%, 70%);
   box-shadow: 0 0 30px hsl(150, 100%, 70%);
+}
+
+.rotate {
+  animation: rotate 1s linear forwards;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
